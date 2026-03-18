@@ -1,0 +1,48 @@
+root@eltex-practice2-pg2-v3:~# git config --global user.name alya2828
+root@eltex-practice2-pg2-v3:~# git config --global user.email lina.tereshkina.02@mail.ru
+root@eltex-practice2-pg2-v3:~# git config --global init.defaultBranch main 
+root@eltex-practice2-pg2-v3:~# git config --list
+
+
+root@eltex-practice2-pg2-v3:~# ssh-keygen -t ed25519 -f ~/.ssh/alina_github -N 
+Generating public/private ed25519 key pair.
+Your identification has been saved in /root/.ssh/alina_github
+Your public key has been saved in /root/.ssh/alina_github.pub
+The key fingerprint is:
+SHA256:8hrrwgZy3qIEfIXirISIsyyW4S+GepAc2NIbxNJDAv4 root@eltex-practice2-pg2-v3
+The key's randomart image is:
++--[ED25519 256]--+
+|++.              |
+|o.= .            |
+|.B o .           |
+|X.* .            |
+|BO.E  . S        |
+|X+B    o         |
+|=@ +  . .        |
+|=o= =  +         |
+|=o.+ o+          |
++----[SHA256]-----+
+root@eltex-practice2-pg2-v3:~# ls -l ~/ssh/
+ls: cannot access '/root/ssh/': No such file or directory
+root@eltex-practice2-pg2-v3:~# ls -l ~/.ssh/
+total 12
+-rw------- 1 root root 419 Mar 17 13:42 alina_github
+-rw-r--r-- 1 root root 109 Mar 17 13:42 alina_github.pub
+-rw------- 1 root root 584 Mar 12 10:41 authorized_keys
+root@eltex-practice2-pg2-v3:~# cat ~/.ssh/alina_github.pub 
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO/e6MeAHIg5zZVRduCMFIBiAIt8/4Xi/0bqt1gYJO7y root@eltex-practice2-pg2-v3
+
+root@eltex-practice2-pg2-v3:~# gh auth setup-git --hostname github.com
+root@eltex-practice2-pg2-v3:~# gh auth status
+github.com
+  ✓ Logged in to github.com account alya2828 (/root/.config/gh/hosts.yml)
+  - Active account: true
+  - Git operations protocol: https
+  - Token: gho_************************************
+  - Token scopes: 'gist', 'read:org', 'repo', 'workflow'
+
+root@eltex-practice2-pg2-v3:~# gh repo create --public Eltex_2026
+✓ Created repository alya2828/Eltex_2026 on GitHub
+  https://github.com/alya2828/Eltex_2026
+
+

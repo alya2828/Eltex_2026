@@ -1,0 +1,228 @@
+Script started on 2026-03-12 15:59:25+07:00 [TERM="dumb" TTY="/dev/pts/73" COLUMNS="139" LINES="42"]
+eltex-pg2-v3@eltex-2026-spring:~$ ls
+eltex-pg2-v3_part.log  report_part1.txt
+eltex-pg2-v3@eltex-2026-spring:~$ ls 
+.bash_history          .config/               .log                   .report_part1.txt.swp  
+.bash_logout           eltex-pg2-v3_part.log  .profile               .viminfo               
+.bashrc                .local/                report_part1.txt       
+eltex-pg2-v3@eltex-2026-spring:~$ ls    compgen -v HIST
+HISTCMD
+HISTCONTROL
+HISTFILE
+HISTFILESIZE
+HISTSIZE
+eltex-pg2-v3@eltex-2026-spring:~$ echo $HISTSIZE
+1000
+eltex-pg2-v3@eltex-2026-spring:~$ ls -d ~/.*
+/home/eltex-pg2-v3/.bash_history  /home/eltex-pg2-v3/.config  /home/eltex-pg2-v3/.profile
+/home/eltex-pg2-v3/.bash_logout   /home/eltex-pg2-v3/.local   /home/eltex-pg2-v3/.report_part1.txt.swp
+/home/eltex-pg2-v3/.bashrc	  /home/eltex-pg2-v3/.log     /home/eltex-pg2-v3/.viminfo
+eltex-pg2-v3@eltex-2026-spring:~$ export HISTTIMEFORMAT="%F %T "
+eltex-pg2-v3@eltex-2026-spring:~$ history | tail
+  159  2026-03-12 15:59:25 exit
+  160  2026-03-12 15:59:25 cd ~
+  161  2026-03-12 15:59:25 ls
+  162  2026-03-12 15:59:25 exit
+  163  2026-03-12 15:59:29 ls
+  164  2026-03-12 16:00:10 compgen -v HIST
+  165  2026-03-12 16:00:17 echo $HISTSIZE
+  166  2026-03-12 16:00:25 ls -d ~/.*
+  167  2026-03-12 16:00:43 export HISTTIMEFORMAT="%F %T "
+  168  2026-03-12 16:00:56 history | tail
+eltex-pg2-v3@eltex-2026-spring:~$ date
+Thu Mar 12 04:01:13 PM +07 2026
+eltex-pg2-v3@eltex-2026-spring:~$ history | tail
+  161  2026-03-12 15:59:25 ls
+  162  2026-03-12 15:59:25 exit
+  163  2026-03-12 15:59:29 ls
+  164  2026-03-12 16:00:10 compgen -v HIST
+  165  2026-03-12 16:00:17 echo $HISTSIZE
+  166  2026-03-12 16:00:25 ls -d ~/.*
+  167  2026-03-12 16:00:43 export HISTTIMEFORMAT="%F %T "
+  168  2026-03-12 16:00:56 history | tail
+  169  2026-03-12 16:01:13 date
+  170  2026-03-12 16:01:22 history | tail
+eltex-pg2-v3@eltex-2026-spring:~$ cat ~/.bash_history | tail
+cat report_part1.txt 
+cd ~
+ls
+screen -ls
+echo "Hello"
+date
+exit
+cd ~
+ls
+exit
+eltex-pg2-v3@eltex-2026-spring:~$ export PROMPT_COMMAND='history -a'
+eltex-pg2-v3@eltex-2026-spring:~$ date
+Thu Mar 12 04:02:00 PM +07 2026
+eltex-pg2-v3@eltex-2026-spring:~$ history | tail
+  165  2026-03-12 16:00:17 echo $HISTSIZE
+  166  2026-03-12 16:00:25 ls -d ~/.*
+  167  2026-03-12 16:00:43 export HISTTIMEFORMAT="%F %T "
+  168  2026-03-12 16:00:56 history | tail
+  169  2026-03-12 16:01:13 date
+  170  2026-03-12 16:01:22 history | tail
+  171  2026-03-12 16:01:25 cat ~/.bash_history | tail
+  172  2026-03-12 16:01:53 export PROMPT_COMMAND='history -a'
+  173  2026-03-12 16:02:00 date
+  174  2026-03-12 16:02:11 history | tail
+eltex-pg2-v3@eltex-2026-spring:~$ cat ~/.bash_history | tail
+#1773306082
+history | tail
+#1773306085
+cat ~/.bash_history | tail
+#1773306113
+export PROMPT_COMMAND='history -a'
+#1773306120
+date
+#1773306131
+history | tail
+eltex-pg2-v3@eltex-2026-spring:~$ DATE=$(date +%F)
+eltex-pg2-v3@eltex-2026-spring:~$ echo $DATE
+2026-03-12
+eltex-pg2-v3@eltex-2026-spring:~$ TIME=$(date +%T)
+eltex-pg2-v3@eltex-2026-spring:~$ echo $TIME
+16:02:41
+eltex-pg2-v3@eltex-2026-spring:~$ DATE_TIME="$DATE $TIME"
+eltex-pg2-v3@eltex-2026-spring:~$ echo $DATE_TIME
+2026-03-12 16:02:41
+eltex-pg2-v3@eltex-2026-spring:~$ ls /bin /sbin | grep '[0-9]'
+addr2line
+b2sum
+base32
+base64
+bunzip2
+bzip2
+bzip2recover
+c89
+c89-gcc
+c99
+c99-gcc
+cpan5.36-x86_64-linux-gnu
+cpp-12
+diff3
+enc2xs
+gcc-12
+gcc-ar-12
+gcc-nm-12
+gcc-ranlib-12
+gcov-12
+gcov-dump-12
+gcov-tool-12
+grub-menulst2cfg
+grub-mkpasswd-pbkdf2
+grub-syslinux2cfg
+h2ph
+h2xs
+i386
+linux32
+linux64
+lto-dump-12
+md5sum
+md5sum.textutils
+pdb3
+pdb3.11
+perl5.36.0
+perl5.36-x86_64-linux-gnu
+ping4
+ping6
+pl2pm
+pod2html
+pod2man
+pod2text
+pod2usage
+py3clean
+py3compile
+py3versions
+pydoc3
+pydoc3.11
+pygettext3
+pygettext3.11
+python3
+python3.11
+sha1sum
+sha224sum
+sha256sum
+sha384sum
+sha512sum
+ssh-argv0
+systemd-id128
+traceroute6
+traceroute6.db
+x86_64
+x86_64-linux-gnu-addr2line
+x86_64-linux-gnu-ar
+x86_64-linux-gnu-as
+x86_64-linux-gnu-c++filt
+x86_64-linux-gnu-cpp
+x86_64-linux-gnu-cpp-12
+x86_64-linux-gnu-dwp
+x86_64-linux-gnu-elfedit
+x86_64-linux-gnu-gcc
+x86_64-linux-gnu-gcc-12
+x86_64-linux-gnu-gcc-ar
+x86_64-linux-gnu-gcc-ar-12
+x86_64-linux-gnu-gcc-nm
+x86_64-linux-gnu-gcc-nm-12
+x86_64-linux-gnu-gcc-ranlib
+x86_64-linux-gnu-gcc-ranlib-12
+x86_64-linux-gnu-gcov
+x86_64-linux-gnu-gcov-12
+x86_64-linux-gnu-gcov-dump
+x86_64-linux-gnu-gcov-dump-12
+x86_64-linux-gnu-gcov-tool
+x86_64-linux-gnu-gcov-tool-12
+x86_64-linux-gnu-gold
+x86_64-linux-gnu-gp-archive
+x86_64-linux-gnu-gp-collect-app
+x86_64-linux-gnu-gp-display-html
+x86_64-linux-gnu-gp-display-src
+x86_64-linux-gnu-gp-display-text
+x86_64-linux-gnu-gprof
+x86_64-linux-gnu-gprofng
+x86_64-linux-gnu-ld
+x86_64-linux-gnu-ld.bfd
+x86_64-linux-gnu-ld.gold
+x86_64-linux-gnu-lto-dump
+x86_64-linux-gnu-lto-dump-12
+x86_64-linux-gnu-nm
+x86_64-linux-gnu-objcopy
+x86_64-linux-gnu-objdump
+x86_64-linux-gnu-ranlib
+x86_64-linux-gnu-readelf
+x86_64-linux-gnu-size
+x86_64-linux-gnu-strings
+x86_64-linux-gnu-strip
+dumpe2fs
+e2freefrag
+e2fsck
+e2image
+e2label
+e2mmpstatus
+e2scrub
+e2scrub_all
+e2undo
+e4crypt
+e4defrag
+fsck.ext2
+fsck.ext3
+fsck.ext4
+killall5
+mke2fs
+mkfs.ext2
+mkfs.ext3
+mkfs.ext4
+resize2fs
+tune2fs
+update-grub2
+eltex-pg2-v3@eltex-2026-spring:~$ ls /bin /sbin | grep '[0-9]'                            PS1='\u@\h-$(date +%H:%M)> '
+eltex-pg2-v3@eltex-2026-spring-16:03> echo 'export PS1' >> ~/.bashrc
+eltex-pg2-v3@eltex-2026-spring-16:03> mkdir ~/"$(date +%Y)"-{01..12}
+eltex-pg2-v3@eltex-2026-spring-16:03> l ls
+2026-01  2026-03  2026-05  2026-07  2026-09  2026-11  eltex-pg2-v3_part.log
+2026-02  2026-04  2026-06  2026-08  2026-10  2026-12  report_part1.txt
+eltex-pg2-v3@eltex-2026-spring-16:04> exit
+exit
+
+Script done on 2026-03-12 16:04:26+07:00 [COMMAND_EXIT_CODE="0"]

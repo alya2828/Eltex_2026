@@ -1,0 +1,155 @@
+Script done on 2026-03-17 09:45:17+00:00 [COMMAND_EXIT_CODE="0"]
+root@eltex-practice2-pg2-v3:~# sudo nano practice2_root_part1.log 
+root@eltex-practice2-pg2-v3:~# cat practice2_root_part1.log 
+Script started on 2026-03-12 11:13:20+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="114" LINES="49"]
+root@eltex-practice2-pg2-v3:~# ls
+practice2_root_part1.log
+root@eltex-practice2-pg2-v3:~# useradd -m -s /bin/bash user1
+root@eltex-practice2-pg2-v3:~# passwd user1
+New password: 
+Retype new password: 
+passwd: password updated successfully
+root@eltex-practice2-pg2-v3:~# adduser user2
+adduser user3
+info: Adding user `user2' ...
+info: Selecting UID/GID from range 1000 to 59999 ...
+info: Adding new group `user2' (1002) ...
+info: Adding new user `user2' (1002) with group `user2 (1002)' ...
+info: Creating home directory `/home/user2' ...
+info: Copying files from `/etc/skel' ...
+New password: 
+Retype new password: 
+passwd: password updated successfully
+Changing the user information for user2
+Enter the new value, or press ENTER for the default
+	Full Name []: 
+	Room Number []: 
+	Work Phone []:     
+	Home Phone []: 
+	Other []: 
+Is the information correct? [Y/n] n
+Changing the user information for user2
+Enter the new value, or press ENTER for the default
+	Full Name []: Alina
+	Room Number []: 611
+	Work Phone []: Student
+	Home Phone []: 1111
+	Other []: 
+Is the information correct? [Y/n] y
+info: Adding new user `user2' to supplemental / extra groups `users' ...
+info: Adding user `user2' to group `users' ...
+info: Adding user `user3' ...
+info: Selecting UID/GID from range 1000 to 59999 ...
+info: Adding new group `user3' (1003) ...
+info: Adding new user `user3' (1003) with group `user3 (1003)' ...
+info: Creating home directory `/home/user3' ...
+info: Copying files from `/etc/skel' ...
+New password: 
+Retype new password: 
+passwd: password updated successfully
+Changing the user information for user3
+Enter the new value, or press ENTER for the default
+	Full Name []: Darya
+	Room Number []: 612
+	Work Phone []: Student
+	Home Phone []: 1111
+	Other []: 
+Is the information correct? [Y/n] y
+info: Adding new user `user3' to supplemental / extra groups `users' ...
+info: Adding user `user3' to group `users' ...
+root@eltex-practice2-pg2-v3:~# usermod -s /usr/sbin/nologin user3
+root@eltex-practice2-pg2-v3:~# su user3
+This account is currently not available.
+root@eltex-practice2-pg2-v3:~# su -s/bin/bash user3
+user3@eltex-practice2-pg2-v3:/root$ exit
+exit
+root@eltex-practice2-pg2-v3:~# cd ..
+root@eltex-practice2-pg2-v3:/# ls
+bin                cdrom  home   lib.usr-is-merged  mnt   root  sbin.usr-is-merged  swap.img  usr
+bin.usr-is-merged  dev    lib    lost+found         opt   run   snap                sys       var
+boot               etc    lib64  media              proc  sbin  srv                 tmp
+root@eltex-practice2-pg2-v3:/# cd ~/
+root@eltex-practice2-pg2-v3:~# ls
+practice2_root_part1.log       groupadd practice_group
+root@eltex-practice2-pg2-v3:~# usermod -aG practice_group user1
+root@eltex-practice2-pg2-v3:~# usermod -aG practice_group user1
+root@eltex-practice2-pg2-v3:~# usermod -aG practice_group user3
+root@eltex-practice2-pg2-v3:~# groups user1
+user1 : user1 practice_group
+root@eltex-practice2-pg2-v3:~# groups user2
+user2 : user2 users
+root@eltex-practice2-pg2-v3:~# groups user3
+user3 : user3 users practice_group
+root@eltex-practice2-pg2-v3:~# usermod -aG practice_group user2
+root@eltex-practice2-pg2-v3:~# groups user2
+user2 : user2 users practice_group
+root@eltex-practice2-pg2-v3:~# exit
+exit
+
+Script done on 2026-03-12 11:37:11+00:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2026-03-17 09:21:35+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="128" LINES="34"]
+root@eltex-practice2-pg2-v3:~# data
+Command 'data' not found, did you mean:
+  command 'date' from deb coreutils (9.4-3ubuntu6.1)
+  command 'dat' from deb liballegro4-dev (2:4.4.3.1-4)
+Try: apt install <deb name>
+root@eltex-practice2-pg2-v3:~# ls
+practice2_root_part1.log
+root@eltex-practice2-pg2-v3:~# mkdir -p /opt/share
+root@eltex-practice2-pg2-v3:~# echo "umask 027" >> /home/user1/.bashrc
+root@eltex-practice2-pg2-v3:~# su user1
+user1@eltex-practice2-pg2-v3:/root$ exit
+exit
+root@eltex-practice2-pg2-v3:~# cd /opt/share/
+root@eltex-practice2-pg2-v3:/opt/share# ls
+file1  file2
+root@eltex-practice2-pg2-v3:/opt/share# rm file1
+root@eltex-practice2-pg2-v3:/opt/share# rm file2 
+root@eltex-practice2-pg2-v3:/opt/share# su user1
+user1@eltex-practice2-pg2-v3:/opt/share$ touch /opt/share/file1
+user1@eltex-practice2-pg2-v3:/opt/share$ exit
+exit
+root@eltex-practice2-pg2-v3:/opt/share# su user2
+user2@eltex-practice2-pg2-v3:/opt/share$ touch /opt/share/file2
+user2@eltex-practice2-pg2-v3:/opt/share$ rm /opt/share/file1
+rm: remove write-protected regular empty file '/opt/share/file1'? 
+user2@eltex-practice2-pg2-v3:/opt/share$ exit
+exit
+root@eltex-practice2-pg2-v3:/opt/share# ls
+file1  file2
+root@eltex-practice2-pg2-v3:/opt/share# chmod +t /opt/share
+root@eltex-practice2-pg2-v3:/opt/share# su user2
+user2@eltex-practice2-pg2-v3:/opt/share$ rm /opt/share/file1
+rm: remove write-protected regular empty file '/opt/share/file1'? 
+user2@eltex-practice2-pg2-v3:/opt/share$ ls
+file1  file2
+user2@eltex-practice2-pg2-v3:/opt/share$ exit 
+exit
+root@eltex-practice2-pg2-v3:/opt/share# echo "user1 ALL=(ALL) NOPASSWD: /bin/dmesg" >> /etc/sudoers
+root@eltex-practice2-pg2-v3:/opt/share# su user1
+user1@eltex-practice2-pg2-v3:/opt/share$ sudo dmesg
+[    0.000000] Linux version 6.8.0-55-generic (buildd@lcy02-amd64-095) (x86_64-linux-gnu-gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, GNU ld (GNU Binutils for Ubuntu) 2.42) #57-Ubuntu SMP PREEMPT_DYNAMIC Wed Feb 12 23:42:21 UTC 2025 (Ubuntu 6.8.0-55.57-generic 6.8.12)
+chage -M 10 user1
+chage -M 10 user2
+chage -M 10 user3
+echo Терешкина Алина > /etc/motd
+rsync -av /etc/ /root/etc_backup/
+tar -czf /root/etc_backup.tar.gz /root/etc_backup
+tar -cjf /root/etc_backup.tar.bz2 /root/etc_backup
+tar -cJf /root/etc_backup.tar.xz /root/etc_backup
+ls -lh /root/etc_backup.tar.*
+date >> /etc/motd
+rsync -av /etc/ /root/etc_backup/
+
+tar -rf /root/etc_backup.tar.gz /etc/motd
+tar -czf /root/etc_backup.tar.gz -C /root etc_backup -C /etc motd
+rsync -av /etc/ /root/etc_backup/
+tar -czf /root/etc_backup.tar.gz -C /root etc_backup -C /etc motd
+mkdir -p /root/etc_backup_bzip
+tar -xjf /root/etc_backup.tar.bz2 -C /root/etc_backup_bzip
+diff -r /root/etc_backup /root/etc_backup_bzip
+tar -xzf /root/etc_backup.tar.gz -C /root/etc_backup_gzip
+tar -xJf /root/etc_backup.tar.xz -C /root/etc_backup_7zip
+diff /root/etc_backup_gzip/etc/motd /root/etc_backup_7zip/etc/motd
+diff /root/etc_backup_gzip/etc_backup/motd /etc/motd
+

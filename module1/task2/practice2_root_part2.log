@@ -1,0 +1,15 @@
+ journalctl -b --since 2026-03-12 08:28:03 --until 2026-03-12 08:28:23
+ find /var/log -name auth.log
+cat /var/log/auth.log | awk '{print , -bash}' | sed 's/\[[0-9]*\]//' | sort
+cat /var/log/auth.log | awk '{print }' | sed 's/\[[0-9]*\]//' | sort | uniq -c | sort -nr^C
+
+awk -F: '==/usr/sbin/nologin {print , }' /etc/passwd
+dmesg | grep kernel
+
+wc -l /var/log/kern.log
+
+awk 
+/^Start-Date:/ {start=$0} 
+/^End-Date:/ {end=$0} 
+/^Commandline:/ {cmd=$0; print cmd " ; " start " ; " end}
+ /var/log/apt/history.log
