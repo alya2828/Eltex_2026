@@ -29,7 +29,7 @@ int main()
         if (strcmp(line, "exit") == 0)
             break;
 
-        // 🔹 1. делим по |
+        // 1. делим по |
         char *commands[MAX_CMDS];
         int n = 0;
 
@@ -63,16 +63,16 @@ int main()
                 exit(1);
             }
 
-            if (pid == 0) // CHILD
+            if (pid == 0) // ребенок
             {
-                // 🔹 если есть вход от предыдущего pipe
+                //  если есть вход от предыдущего pipe
                 if (prev_fd != -1)
                 {
                     dup2(prev_fd, STDIN_FILENO);
                     close(prev_fd);
                 }
 
-                // 🔹 если не последняя команда → вывод в pipe
+                //  если не последняя команда  вывод в pipe
                 if (i < n - 1)
                 {
                     dup2(fd[1], STDOUT_FILENO);
@@ -80,7 +80,7 @@ int main()
                     close(fd[1]);
                 }
 
-                // 🔹 парсим аргументы команды
+                //  парсим аргументы команды
                 char *argv[MAX_ARGS];
                 int argc = 0;
 
@@ -135,7 +135,7 @@ int main()
                 perror("exec failed");
                 exit(1);
             }
-            else //  PARENT
+            else //  родитель
             {
                 if (prev_fd != -1)
                     close(prev_fd);
@@ -148,7 +148,7 @@ int main()
             }
         }
 
-        // 🔹 ждём все процессы
+        //  ждём все процессы
         for (int i = 0; i < n; i++)
             wait(NULL);
     }
