@@ -1,12 +1,17 @@
-#include <stdio.h>     
-#include <stdlib.h>    
-#include <unistd.h>    
-#include <signal.h>    
-#include <arpa/inet.h> 
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <signal.h>
+#include <arpa/inet.h>
+#include "process_control.h"
+
+#define SERVER_IP "127.0.0.1"
+#define SERVER_PORT 5000
 
 
-#define SERVER_IP "127.0.0.1" 
-#define SERVER_PORT 5000 
+// PID  для work процесса
+static pid_t worker_pid = -1;
+
 
 // Флаг работы программы
 static volatile int running = 1;
@@ -14,7 +19,7 @@ static volatile int running = 1;
 // Дескриптор TCP-сокета
 static int server_socket = -1;
 
-// Обработчик 
+// Обработчик
 void signal_handler(int sig)
 {
     (void)sig;   // Не используем параметр
@@ -32,17 +37,15 @@ int system_init(void)
     // Здесь позже будет:
     // logger_init();
     // config_load();
-    // process_init();
+    process_init();
     // control_init();
 
     return 0;
 }
-
-#include <arpa/inet.h>          
 // Подключение к серверу
 int connect_to_server(void)
 {
-    
+
     struct sockaddr_in server_addr;
 
     // Создаем TCP-сокет
@@ -64,9 +67,7 @@ int connect_to_server(void)
     inet_pton(AF_INET, SERVER_IP, &server_addr.sin_addr);
 
     // Подключаемся к серверу
-    if (connect(server_socket,
-                (struct sockaddr *)&server_addr,
-                sizeof(server_addr)) < 0)
+    if (connect(server_socket, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0)
     {
         printf("Connection failed\n");
         return -1;
@@ -86,11 +87,8 @@ int system_run(void)
     // Пока программа работает
     while (running)
     {
-        // Получаем команду от сервера     
-        if (recv(server_socket,
-                 &command,
-                 sizeof(command),
-                 0) <= 0)
+        // Получаем команду от сервера
+        if (recv(server_socket, &command, sizeof(command), 0) <= 0)
         {
             printf("[CLIENT] Server disconnected\n");
             break;
@@ -103,26 +101,62 @@ int system_run(void)
         switch (command)
         {
         case 1:
+        {
             // Запуск нагрузки
-            printf("START LOAD_ потом разделить на  сpu и ram//\n");
+             printf("[CLIENT] START LOAD\n");
 
-            // Позже:
-            // control_start();
-            // load_cpu_start();
-            // load_ram_start();
+            worker_pid = process_create();
+
+            if (worker_pid < 0)
+            {
+                printf("fork failed\n");
+                break;
+            }
+
+            if (worker_pid == 0)
+            {
+                process_set_name("worker");
+
+                printf("[CHILD] Worker started PID=%d\n", getpid());
+                // Позже разделить прроцессы на разные нагрузки 
+                // cpu_load_start()
+                // ram_load_start()
+
+                while (1)// имитация нагрзки 
+                {
+                    sleep(1);
+                }
+            } else
+            {
+                printf("[PARENT] Worker PID=%d\n", worker_pid);
+            }
 
             break;
+        }
 
         case 2:
-            // Остановка нагрузки
+        {
             printf("STOP LOAD\n");
 
-            // Позже:
-            // control_stop();
+            if (worker_pid > 0)
+            {
+                process_terminate(worker_pid);
+                printf("[CLIENT] Worker stopped PID=%d\n", worker_pid);
+                worker_pid = -1;
+            }
+            else
+            {
+                printf("[CLIENT] No worker running\n");
+            }
 
             break;
+        }
+        // Позже:
+        // control_stop();
+
+        break;
         case 3:
-            // 
+            //
             printf("SEND_FILE\n");
 
             //????
@@ -179,7 +213,6 @@ int system_shutdown(void)
     return 0;
 }
 
-// Точка входа программы
 int main(void)
 {
     // Инициализация системы
